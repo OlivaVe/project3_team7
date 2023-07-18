@@ -43,6 +43,7 @@
     </style>
 </head>
 <body>
+  
     <script src="static/logic.js"></script>
 
 <div class="container">
@@ -52,7 +53,21 @@
       <p>Use the interactive charts below to explore the dataset</p>
     </div>
   </div>
+  <h1>Analyzing astrological & demographic influence on Divorce Rates…</h1>
 
+  <h2>Our Database: Divorces in Veracruz consists of 3505 rows.<br><br>
+    We chose to analyze the zodiac signs of the data to answer some of the following questions…<br>
+    - Which zodiac signs have the higher income? Is it a determinant factor?<br>
+    - Which combination of zodiac signs are the most compatible?<br><br>
+    
+    And other general demographic questions:<br>
+    - At what age the divorces rate is the most common?<br>
+    - Location of the divorces<br>
+    - Does the cholarization level have any impact?<br><br>
+    </h2>
+
+<h2> First chart using Chart.js <br></h2>
+<h3>We started our analysis through a study of Voluntary and Necessary divorces divided into Man and Woman. Using the Zodiac Sign parameter to create 12 different groups. </h2>
   <div class="chartMenu">
     <p>WWW.CHARTJS3.COM (Chart JS <span id="chartVersion"></span>)</p>
   </div>
@@ -195,10 +210,28 @@ function changeDivorces(){
   const chartVersion = document.getElementById('chartVersion');
   chartVersion.innerText = Chart.version;
   </script>
+  <br>
+<h2> Second chart using Plotly and our API <br></h2>
+<h3>Then we followed the analysis with a chart to see if the difference in the level of income was a defining factor in the divorce rates. Still using the 12 groups of Zodiac Signs as reference.</h2>
+
 <div id="plot1"></div>
-<div id="plot2"></div>
+<br>
+<h2> Third chart using Plotly and our API <br></h2>
+<h3>We also thought that the age would be an important factor in these divorces, so we wanted to see if this was the case. Studyging the divorce rates by splitting men and woman by their age.</h2>
+
 <div id="plot3"></div>
+<br>
+<h2> Fourth chart using Plotly and our API <br></h2>
+<h3>Finally, we wanted to see if the Scholarization level when divorced, was maybe something that could explain these divorce rates</h2>
 <div id="plot4"></div>
-<div id="map"></div>
+<br>
+<br>
+<h2> Fifth chart using Leaftlet<br></h2>
+<h3>In addition to these charts, we were able to create a map showing the mos common locations where these divorces happen. <br>
+To see this map, please refer to our code in folder "Mexico Map per State" in our GitHUB <br> https://github.com/OlivaVe/project3_team7/tree/main</h3>
+  <br>
+<h2> Sixth chart using Matplotlib<br></h2>  
+<h3>  And to finalize our analysis, we created a compatibility matrix betwenn Zodiac signs to see if there was a way to match people with appropriate sign in order to reduce these rates.
+<br> To see this chart, please refer to our file "matrix images and code" in our GitHUB <br> https://github.com/OlivaVe/project3_team7/tree/main</h3>
 </body>
 </html>
