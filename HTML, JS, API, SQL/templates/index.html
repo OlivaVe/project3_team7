@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Divorces in Mexico 2000 - 2015</title>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/style.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 50vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgba(54, 162, 235, 1);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 50vw;
+        height: calc(50vh - 40px);
+        background: rgba(54, 162, 235, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 800px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(54, 162, 235, 1);
+        background: white;
+      }
+    </style>
+</head>
+<body>
+    <script src="static/logic.js"></script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 jumbotron text-center">
+      <h1>Divorces in Mexico 2000 - 2015</h1>
+      <p>Use the interactive charts below to explore the dataset</p>
+    </div>
+  </div>
+
+  <div class="chartMenu">
+    <p>WWW.CHARTJS3.COM (Chart JS <span id="chartVersion"></span>)</p>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <canvas id="myChart"></canvas>
+      <select id="type" onchange = "changeDivorces()">
+        <option value = "Voluntary">Voluntary</option>
+        <option value = "Necessary">Necessary</option>
+      </select>
+      <select id="gender" onchange = "changeDivorces()">
+        <option value = "Man">Man</option>
+        <option value = "Woman">Woman</option>
+      </select>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+  <script>
+  // setup 
+  const data = {
+        datasets: [{
+      label: 'Number of Divorces',
+       data: [
+        {id: 'Sagittarius', divorces:{
+          Voluntary:{ Man:156, Woman:182},
+          Necessary:{ Man:140, Woman:115},
+          
+        }},
+        {id: 'Capricorn', divorces:{
+          Voluntary:{ Man:144, Woman:144},
+          Necessary:{ Man:116, Woman:111},
+          
+        }},
+        {id: 'Cancer', divorces:{
+          Voluntary:{ Man:187, Woman:163},
+          Necessary:{ Man:131, Woman:117},
+          
+        }},
+        {id: 'Pisces', divorces:{
+          Voluntary:{ Man:193, Woman:186},
+          Necessary:{ Man:130, Woman:129},
+          
+        }},
+        {id: 'Aquarius', divorces:{
+          Voluntary:{ Man:157, Woman:173},
+          Necessary:{ Man:118, Woman:115},
+          
+        }},
+        {id: 'Gemini', divorces:{
+          Voluntary:{ Man:175, Woman:161},
+          Necessary:{ Man:117, Woman:122},
+          
+        }},
+        {id: 'Taurus', divorces:{
+          Voluntary:{ Man:170, Woman:161},
+          Necessary:{ Man:117, Woman:138},
+          
+        }},
+        {id: 'Scorpio', divorces:{
+          Voluntary:{ Man:192, Woman:166},
+          Necessary:{ Man:132, Woman:139},
+          
+        }},
+        {id: 'Aries', divorces:{
+          Voluntary:{ Man:154, Woman:164},
+          Necessary:{ Man:111, Woman:117},
+          
+        }},
+        {id: 'Virgo', divorces:{
+          Voluntary:{ Man:182, Woman:186},
+          Necessary:{ Man:120, Woman:133},
+          
+        }},
+        {id: 'Libra', divorces:{
+          Voluntary:{ Man:148, Woman:172},
+          Necessary:{ Man:109, Woman:122},
+          
+        }},
+        {id: 'Leo', divorces:{
+          Voluntary:{ Man:167, Woman:167},
+          Necessary:{ Man:138, Woman:121},
+          
+        }},
+      ],
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(0, 0, 0, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(0, 0, 0, 1)'
+      ],
+      borderWidth: 1
+    }]
+  };
+
+  // config 
+  const config = {
+    type: 'bar',
+    data,
+    options: {
+      parsing: {
+        xAxisKey: 'id',
+        yAxisKey: 'divorces.Voluntary.Man',
+
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+
+  // render init block
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+function changeDivorces(){
+  const type = document.getElementById('type').value;
+  const gender = document.getElementById('gender').value;
+
+  myChart.config.options.parsing.yAxisKey = `divorces.${type}.${gender}`;
+  myChart.update();
+}
+
+
+  // Instantly assign Chart.js version
+  const chartVersion = document.getElementById('chartVersion');
+  chartVersion.innerText = Chart.version;
+  </script>
+<div id="plot1"></div>
+<div id="plot2"></div>
+<div id="plot3"></div>
+<div id="plot4"></div>
+<div id="map"></div>
+</body>
+</html>
